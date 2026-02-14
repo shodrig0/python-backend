@@ -13,7 +13,7 @@
 
   - Relacionarlas
 
-- [parcial] Simular carrito y calcular total
+- [*] Simular carrito y calcular total
 
 > Usar:
 
@@ -25,13 +25,20 @@
 
 ### Ejercicio 2 – Async real
 
-- [ ] Hacer 10 requests en paralelo con httpx.AsyncClient
+- [x] Hacer 10 requests en paralelo con httpx.AsyncClient
 
-- [ ] Medir tiempo total
+- [x] Medir tiempo total
 
-- [ ] Comparar con versión sin async
+- [x] Comparar con versión sin async
 
 > Objetivo: entender async/await y concurrencia.
+
+```
+1. No hay una carga tan alta de requests. Como los métodos async buscan matar los tiempos muertos, si no hay una alta demanda de solicitudes (concurrencia), no tiene sentido utilizar método asíncrono.
+2. Las tareas están vinculadas a la CPU y no a la red, vos mismo lo dijiste. El I/O (In y Out) son las operacioens de entrada y salida de recursos externos. Si las tareas están dentro de la misma CPU, hay entrada y salidad de memoria, disco, etc. Todo ocurre adentro.
+3. Las solicitudes son individuales async no muestran gran diferencia de tiempo cuando las tareas en simultáneo del CPU se ejecutan. COn async duele menos la espera.
+
+```
 
 ## FASE 2 – FastAPI básico
 

@@ -1,0 +1,62 @@
+[
+    {
+        "key": "ana",
+        "name": "Ana",
+        "portrait": "https://d15f34w2p8l1cc.cloudfront.net/overwatch/985b06beae46b7ba3ca87d1512d0fc62ca7f206ceca58ef16fc44d43a1cc84ed.png",
+        "role": "support"
+    },
+    {
+        "key": "anran",
+        "name": "Anran",
+        "portrait": "https://d15f34w2p8l1cc.cloudfront.net/overwatch/2cdf460c6080a031258e513713d1d635a8e68799cb5d7e27774be8963e95f6a3.png",
+        "role": "damage"
+    },
+    {
+        "key": "ashe",
+        "name": "Ashe",
+        "portrait": "https://d15f34w2p8l1cc.cloudfront.net/overwatch/4076bbaa2eb52a0bfe612434071e56e7702d5454473dbbea2f9e392a9d997a94.png",
+        "role": "damage"
+    },
+    {
+        "key": "baptiste",
+        "name": "Baptiste",
+        "portrait": "https://d15f34w2p8l1cc.cloudfront.net/overwatch/d4e6f1ca45d9f88fa89260787397f141a6f007b14e5b26698883b6a17bab9680.png",
+        "role": "support"
+    },
+    {
+        "key": "domina",
+        "name": "Domina",
+        "portrait": "https://d15f34w2p8l1cc.cloudfront.net/overwatch/1161c112292c56c052c0ae711792fcde06e3251b98bc9709e582dd7585b5dcd6.png",
+        "role": "tank"
+    },
+    {
+        "key": "doomfist",
+        "name": "Doomfist",
+        "portrait": "https://d15f34w2p8l1cc.cloudfront.net/overwatch/ff5c54f43ad253c7faeda9c4ed31d42582ea6b19205d197866f3dd0c0aa14c16.png",
+        "role": "tank"
+    },
+    {
+        "key": "dva",
+        "name": "D.Va",
+        "portrait": "https://d15f34w2p8l1cc.cloudfront.net/overwatch/df5a5532862d9292634fb3dc0e51a4705aa601de65e5e815513ccc663d84de56.png",
+        "role": "tank"
+    },
+    {
+        "key": "echo",
+        "name": "Echo",
+        "portrait": "https://d15f34w2p8l1cc.cloudfront.net/overwatch/d4f2d5b0c2b7e82d61353186c5f23152ccba9d3569b50839aa580dca3e9114ba.png",
+        "role": "damage"
+    },
+    {
+        "key": "emre",
+        "name": "Emre",
+        "portrait": "https://d15f34w2p8l1cc.cloudfront.net/overwatch/c51e2f698138861c0e3b6cfab3c3ca9d67fd709be175e7c397aa6f2649712a30.png",
+        "role": "damage"
+    },
+    {
+        "key": "freja",
+        "name": "Freja",
+        "portrait": "https://d15f34w2p8l1cc.cloudfront.net/overwatch/811963897c352d9f178bec882d94bd0281074feee7c429c5145b6b8ea8ebe862.png",
+        "role": "damage"
+    }
+]
