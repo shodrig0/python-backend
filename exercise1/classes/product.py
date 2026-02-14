@@ -9,3 +9,6 @@ class Product:
     sku: str
     stock: int
     price: List["Price"]
+
+    def get_current_price(self) -> Price:
+        return max(self.price, key = lambda p: p.timestamp)

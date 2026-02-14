@@ -39,5 +39,6 @@ print ("PRICE: ", product2.price[0].value)
 print("-----------")
 print(f"Branch from { branch5.city } has { len(branch5.product) } products.")
 print("-----------")
-print(cart1.add(product2.stock, product2))
+quantityToBuy = 99
+print(cart1.add(quantityToBuy, product3))
 print("-----------")
