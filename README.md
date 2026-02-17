@@ -44,7 +44,7 @@
 
 ### Ejercicio 3 – CRUD en memoria
 
-- [ ] Crear API con:
+- [x] Crear API con:
   - GET /product
 
   - GET /product/{id}
@@ -61,9 +61,9 @@
 
 ### Ejercicio 4 – Filtro por query param
 
-- [ ] GET /product?region=manhattan
+- [x] GET /product?region=manhattan
 
-- [ ] Filtrar resultados
+- [x] Filtrar resultados
 
 > Objetivo: simular caso real de región/sucursal.
 
