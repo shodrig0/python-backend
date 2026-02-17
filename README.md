@@ -45,13 +45,15 @@
 ### Ejercicio 3 – CRUD en memoria
 
 - [ ] Crear API con:
-  - GET /productos
+  - GET /product
 
-  - GET /productos/{id}
+  - GET /product/{id}
 
-  - POST /productos
+  - POST /product
 
-  - DELETE /productos/{id}
+  - PUT /product/{id}
+
+  - DELETE /product/{id}
 
 > Sin base de datos
 
@@ -59,7 +61,7 @@
 
 ### Ejercicio 4 – Filtro por query param
 
-- [ ] GET /productos?region=manhattan
+- [ ] GET /product?region=manhattan
 
 - [ ] Filtrar resultados
 
