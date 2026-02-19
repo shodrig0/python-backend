@@ -9,8 +9,5 @@ class Branch(Base):
     city = Column(String(100), nullable = False)
     postal_code = Column(String(100), nullable = False)
 
-    products = relationship('Product', back_populates = 'branch')
-    prices = relationship('Price', back_populates = 'branch')
-
-    def __repr__(self):
-        return f"<Branch(city='{self.city}', postal_code='{self.postal_code}', products={self.products})>"
+    # prices = relationship('Price', back_populates = 'branch')
+    product_branches = relationship('ProductBranch', back_populates = 'branch')

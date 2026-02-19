@@ -26,8 +26,8 @@ async def get_product(region: str | None = None):
     if region is not None:
         new_list = []
         for product in data_list:
-           if region.lower() == product["region"].lower():
-               new_list.append(product)
+            if region.lower() == product["region"].lower():
+                new_list.append(product)
         data_list = new_list
     return data_list
 

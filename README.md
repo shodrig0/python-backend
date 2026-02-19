@@ -71,19 +71,20 @@
 
 ### Ejercicio 5 – PostgreSQL + SQLAlchemy
 
-- [ ] Crear modelos:
+- [x] Crear modelos:
 
-- [ ] Producto
+- [x] Producto
 
-- [ ] Sucursal
+- [x] Sucursal
 
-- [ ] Precio (con timestamp)
+- [x] Precio (con timestamp)
 
-- [ ] Insert / Select / Update
+- [-] Insert / Select / Update
 
-- [ ] Integrarlo a FastAPI
+- [-] Integrarlo a FastAPI
 
 > Objetivo: ORM real y manejo de sesiones.
+> Nuevo: tratar de nromalizar la bdd.
 
 ## FASE 4 – Simulación de scraping
 
