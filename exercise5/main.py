@@ -1,5 +1,7 @@
 from config.engine import engine, SessionLocal
 from models.base import Base
+from models.branch import Branch
+from models.price import Price
 from models.product import Product
 
 def init_db():
@@ -9,11 +11,8 @@ def main():
     init_db()
 
     session_db = SessionLocal()
-
-    new_product = Product(description = "Watermelon Sugar", price = 65, region = "Toronto", sku = "33214", stock = 50)
-    session_db.add(new_product)
     session_db.commit()
-
+    session_db.close()
 
 if __name__ == "__main__":
     main()

@@ -13,7 +13,7 @@
 
   - Relacionarlas
 
-- [*] Simular carrito y calcular total
+- [x] Simular carrito y calcular total
 
 > Usar:
 
