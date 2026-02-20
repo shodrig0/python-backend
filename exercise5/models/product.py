@@ -9,7 +9,9 @@ class Product(Base):
     description = Column(String(250), nullable = False)
     sku = Column(String(50), nullable = False, unique = True)
 
-    # prices = relationship('Price', back_populates = 'product')
     product_branches = relationship('ProductBranch', back_populates = 'product')
 
     __table_args__ = (UniqueConstraint('sku', name = 'uq_product_sku'),)
+
+    def __repr__(self):
+        return f"\n<Product -> ID = {self.product_id} | '{self.description}' | SKU = '{self.sku}'>\n"

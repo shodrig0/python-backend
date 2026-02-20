@@ -16,3 +16,6 @@ class Price(Base):
     __table_args__ = (ForeignKeyConstraint(['branch_id', 'product_id'], ['product_branch.branch_id', 'product_branch.product_id']),)
 
     product_branch = relationship('ProductBranch', back_populates = 'prices')
+
+    def __repr__(self):
+        return f"\n<Price -> ID = {self.price_id} | $'{self.amount}' | VALID FROM = '{self.postal_code}' | VALID TO = '{self.valid_to}'>\n"

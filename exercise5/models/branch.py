@@ -9,5 +9,7 @@ class Branch(Base):
     city = Column(String(100), nullable = False)
     postal_code = Column(String(100), nullable = False)
 
-    # prices = relationship('Price', back_populates = 'branch')
     product_branches = relationship('ProductBranch', back_populates = 'branch')
+
+    def __repr__(self):
+        return f"\n<Branch -> ID = {self.branch_id} | '{self.city}' | POSTAL CODE = '{self.postal_code}'>\n"
