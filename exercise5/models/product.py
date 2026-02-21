@@ -9,7 +9,7 @@ class Product(Base):
     description = Column(String(250), nullable = False)
     sku = Column(String(50), nullable = False, unique = True)
 
-    product_branches = relationship('ProductBranch', back_populates = 'product')
+    product_branches = relationship('ProductBranch', cascade = 'all, delete', back_populates = 'product')
 
     __table_args__ = (UniqueConstraint('sku', name = 'uq_product_sku'),)
 

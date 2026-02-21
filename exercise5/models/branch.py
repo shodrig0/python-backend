@@ -7,7 +7,7 @@ class Branch(Base):
 
     branch_id = Column(Integer, primary_key = True, autoincrement = True)
     city = Column(String(100), nullable = False)
-    postal_code = Column(String(100), nullable = False)
+    postal_code = Column(String(100), nullable = False, unique = True)
 
     product_branches = relationship('ProductBranch', back_populates = 'branch')
 
