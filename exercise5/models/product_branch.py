@@ -10,6 +10,6 @@ class ProductBranch(Base):
     
     stock = Column(Integer, nullable = False)
 
-    branch = relationship('Branch', back_populates='product_branches')
-    product = relationship('Product', back_populates='product_branches')
-    prices = relationship('Price', back_populates='product_branch')
+    branch = relationship('Branch', back_populates = 'product_branches')
+    product = relationship('Product', back_populates = 'product_branches')
+    prices = relationship('Price', back_populates = 'product_branch')

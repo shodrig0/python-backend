@@ -9,3 +9,5 @@ def create_branch(city, postal_code):
 def get_product_by_postal_code(postal_code):
     product = session.query(Branch).filter_by(postal_code = postal_code).first()
     return product
+
+# work in progress...

@@ -79,9 +79,9 @@
 
 - [x] Precio (con timestamp)
 
-- [-] Insert / Select / Update
+- [x] Insert / Select / Update
 
-- [-] Integrarlo a FastAPI
+- [InProgress] Integrarlo a FastAPI
 
 > Objetivo: ORM real y manejo de sesiones.
 > Nuevo: tratar de nromalizar la bdd.
