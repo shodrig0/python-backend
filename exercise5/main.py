@@ -1,13 +1,28 @@
 from fastapi import FastAPI
+from services.initializer import initializer
 from schemas.product import product_router
+from contextlib import asynccontextmanager
+from models.product import Product
+from models.branch import Branch
+from models.price import Price
+from models.product_branch import ProductBranch
 
-api = FastAPI()
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    initializer()
+    print('Database initialized')
+
+    yield
+
+    print('App shutting down')
+
+app = FastAPI(lifespan = lifespan)
 
 routers = [product_router]
 
 for router in routers:
-    api.include_router(router)
+    app.include_router(router)
 
-@api.get('/')
+@app.get('/')
 async def root():
-    return { 'Exercise 5!' }
+    return { 'msg': 'Exercise 5!' }
