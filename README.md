@@ -81,10 +81,15 @@
 
 - [x] Insert / Select / Update
 
-- [InProgress] Integrarlo a FastAPI
+- [x] Integrarlo a FastAPI
 
+```bash
 > Objetivo: ORM real y manejo de sesiones.
-> Nuevo: tratar de nromalizar la bdd.
+
+> Nuevo: tratar de normalizar la bdd.
+
+> Aclaración: Si bien faltan algunos métodos http como en los services, los más importantes (para aprender fastapi y sqlalchemy) están hechos. En los siguientes ejercicios se irán a ir agregando.
+```
 
 ## FASE 4 – Simulación de scraping
 

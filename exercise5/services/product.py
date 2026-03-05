@@ -49,6 +49,8 @@ def update_description_product(session: Session, sku: str, new_description: str)
         raise HTTPException(status_code = 404, detail = 'Product not found')
     
     product.description = new_description
+    session.commit()
+    session.refresh(product)
     return product
 
 def delete_product_by_sku(session: Session, sku: str):
@@ -58,4 +60,5 @@ def delete_product_by_sku(session: Session, sku: str):
         return None
     
     session.delete(product)
+    session.commit()
     return True

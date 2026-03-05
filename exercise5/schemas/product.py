@@ -55,8 +55,6 @@ async def update_description_product_by_sku(product_sku: str, product_descriptio
         raise HTTPException(status_code = 404, detail = 'Product not found')
     
     product.description = product_description.description
-    session.commit()
-    session.refresh(product)
     return product
 
 @product_router.delete('/products/{product_sku}')
@@ -66,5 +64,4 @@ async def delete_product(product_sku: str, session: Session = Depends(get_sessio
     if not product:
         raise HTTPException(status_code = 404, detail = 'Product not found')
     
-    session.commit()
     return HTTPException(status_code = 200, detail = 'Product deleted successfully')
