@@ -7,17 +7,20 @@ from models.branch import Branch
 from models.product_branch import ProductBranch
 from datetime import datetime, timezone
 
-def create_price(session: Session, product_sku: str, pc_branch: str, amount: float, valid_from: datetime, valid_to: Optional[datetime]):
+def create_price(session: Session, product_sku: str, pc_branch: str, amount: float):
     product_branch = (
         session.query(ProductBranch).join(ProductBranch.product).join(ProductBranch.branch).filter(Product.sku == product_sku, Branch.postal_code == pc_branch).first()
     )
 
     if not product_branch:
         raise HTTPException(status_code = 404, detail = 'Product not found')
+    
+    now = datetime.now(timezone.utc)
 
-    price = Price(amount = amount, valid_from = valid_from, valid_to = valid_to, product_branch = product_branch)
+    price = Price(amount = amount, valid_from = now, valid_to = None, product_branch = product_branch)
     session.add(price)
     session.commit()
+    session.refresh(price)
     return price
 
 def get_current_price(session: Session, product_sku: str, pc_branch: str):
@@ -29,20 +32,20 @@ def get_current_price(session: Session, product_sku: str, pc_branch: str):
         raise HTTPException(status_code = 404, detail = 'Product not found')
     
     price = (
-        session.query(Price).filter(Price.product_id == product_branch.product_id, Price.branch_id == product_branch.branch_id, Price.valid_to.is_(None)).one_or_none()
+        session.query(Price).filter(Price.product_branch_id == product_branch.product_branch_id, Price.valid_to.is_(None)).one_or_none()
     )
     return price
 
 def update_price(session: Session, product_sku: str, pc_branch: str, new_amount: float):
     product_branch = (
-        session.query(ProductBranch).join(Product).join(Branch).filter(Product.sku == product_sku, Branch.postal_code == pc_branch).first()
+        session.query(ProductBranch).join(ProductBranch.product).join(ProductBranch.branch).filter(Product.sku == product_sku, Branch.postal_code == pc_branch).first()
     )
 
     if not product_branch:
         raise HTTPException(status_code = 404, detail = 'Product not found')
 
     current_price = (
-        session.query(Price).filter(Price.product_branch == product_branch, Price.valid_to.is_(None)).one_or_none()
+        session.query(Price).filter(Price.product_branch_id == product_branch.product_branch_id, Price.valid_to.is_(None)).one_or_none()
     )
 
     now = datetime.now(timezone.utc)

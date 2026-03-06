@@ -4,10 +4,9 @@ from typing import Optional
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from services.initializer import get_session
-from services.price import get_current_price, update_price
+from services.price import get_current_price, update_price, create_price
 
 price_router = APIRouter()
-
 class PriceResponse(BaseModel):
     amount: float
     valid_from: datetime
@@ -19,10 +18,8 @@ class PriceResponse(BaseModel):
 
 class PriceCreate(BaseModel):
     amount: float
-    valid_from: datetime
-    valid_to: datetime
-    product_id: int
-    branch_id: int
+    sku_product: str
+    pc_branch: str
 
     model_config = ConfigDict(from_attributes = True)
 
@@ -34,6 +31,10 @@ class PriceUpdate(BaseModel):
     branch_id: Optional[int] = None
 
     model_config = ConfigDict(from_attributes = True)
+
+@price_router.post('/price')
+async def create_price_by_api(price: PriceCreate, session: Session = Depends(get_session)):
+    return create_price(session, price.sku_product, price.pc_branch, price.amount)
 
 @price_router.get('/price/{sku_product}/{pc_branch}')
 async def get_price_product(sku_product: str, pc_branch: str, session: Session = Depends(get_session)):
