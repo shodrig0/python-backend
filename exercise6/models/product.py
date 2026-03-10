@@ -14,7 +14,8 @@ class Product(Base):
 
     category_id = Column(ForeignKey('category.category_id'), nullable = False)
 
-    category = relationship('Category', back_populates = 'category')
+    product_branches = relationship('ProductBranch', cascade = 'all, delete', back_populates = 'product')
+    category = relationship('Category', back_populates = 'products')
 
     __table_args__ = (UniqueConstraint('sku', name = 'uq_product_sku'),)
 

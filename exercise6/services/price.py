@@ -1,5 +1,3 @@
-from fastapi import HTTPException
-from typing import Optional
 from sqlalchemy.orm import Session
 from models.price import Price
 from models.product import Product
@@ -13,7 +11,7 @@ def create_price(session: Session, product_sku: str, pc_branch: str, amount: flo
     )
 
     if not product_branch:
-        raise HTTPException(status_code = 404, detail = 'Product not found')
+        return None
     
     now = datetime.now(timezone.utc)
 
@@ -29,7 +27,7 @@ def get_current_price(session: Session, product_sku: str, pc_branch: str):
     )
 
     if not product_branch:
-        raise HTTPException(status_code = 404, detail = 'Product not found')
+        return None
     
     price = (
         session.query(Price).filter(Price.product_branch_id == product_branch.product_branch_id, Price.valid_to.is_(None)).one_or_none()
@@ -42,7 +40,7 @@ def update_price(session: Session, product_sku: str, pc_branch: str, new_amount:
     )
 
     if not product_branch:
-        raise HTTPException(status_code = 404, detail = 'Product not found')
+        return None
 
     current_price = (
         session.query(Price).filter(Price.product_branch_id == product_branch.product_branch_id, Price.valid_to.is_(None)).one_or_none()

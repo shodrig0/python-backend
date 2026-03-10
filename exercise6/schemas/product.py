@@ -3,38 +3,45 @@ from sqlalchemy.orm import Session
 from fastapi import APIRouter, Depends, HTTPException
 from typing import Optional
 from services.initializer import get_session
-from services.product import get_all_products, get_product_by_sku, update_description_product, create_product, delete_product_by_sku, get_products_by_description, order_product_by_description
+from services.product import get_all_products, get_product_by_sku, get_products_by_title, create_product, delete_product_by_sku, delete_product_by_sku, modify_data_product_by_sku
 
 product_router = APIRouter()
 
-class ProductResponse(BaseModel):
-    description: str
+class ProductCreate(BaseModel):
     sku: str
+    title: str
+    description: str
+    image: str
+
+    category_name: str
 
     model_config = ConfigDict(from_attributes = True)
 
 class ProductUpdate(BaseModel):
-    description: Optional[str] = None
     sku: Optional[str] = None
+    title: Optional[str] = None
+    description: Optional[str] = None
+    image: Optional[str] = None
+
+    category_name: Optional[str] = None
 
     model_config = ConfigDict(from_attributes = True)
 
 @product_router.post('/products')
-async def create_product_by_api(product: ProductResponse, session: Session = Depends(get_session)):
-    product = create_product(session, product.description, product.sku)
+async def create_product_by_api(product_model: ProductCreate, session: Session = Depends(get_session)):
+    product_data = product_model.model_dump()
     
+    product = create_product(session, product_data)
+
     if not product:
-        raise HTTPException(status_code = 404, detail = 'Product not found')
+        raise HTTPException(status_code = 400, detail = 'Bad request')
     
     return product
 
 @product_router.get('/products')
-async def read_products(description: str | None = None, order: str | None = None, session: Session = Depends(get_session)):
-    if description:
-        return get_products_by_description(session, description)
-    
-    if order and order.lower() == 'asc':
-        return order_product_by_description(session)
+async def read_products(title: str | None = None, session: Session = Depends(get_session)):
+    if title:
+        return get_products_by_title(session, title)
     
     return get_all_products(session)
 
@@ -48,13 +55,14 @@ async def read_product_by_sku(product_sku: str, session: Session = Depends(get_s
     return product
 
 @product_router.patch('/products/{product_sku}')
-async def update_description_product_by_sku(product_sku: str, product_description: ProductUpdate, session: Session = Depends(get_session)):
-    product = update_description_product(session, product_sku, product_description)
+async def update_product(product_sku: str, product_update: ProductUpdate, session: Session = Depends(get_session)):
+    update_data = product_update.model_dump(exclude_unset = True)
+    
+    product = modify_data_product_by_sku(session, product_sku, update_data)
 
     if not product:
-        raise HTTPException(status_code = 404, detail = 'Product not found')
-    
-    product.description = product_description.description
+        raise HTTPException(status_code = 404, detail = "Product not found")
+
     return product
 
 @product_router.delete('/products/{product_sku}')

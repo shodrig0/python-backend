@@ -3,7 +3,7 @@ from typing import Optional
 from sqlalchemy.orm import Session
 from fastapi import APIRouter, Depends, HTTPException
 from services.initializer import get_session
-from services.branch import get_branches, get_branch_by_city, get_branch_by_postal_code, create_branch
+from services.branch import get_branches, get_branch_by_postal_code, modify_city_of_branch_by_postal_code, create_branch
 
 branch_router = APIRouter()
 
@@ -33,20 +33,21 @@ async def create_branch_by_api(branch: BranchCreate, session: Session = Depends(
 async def read_branches(session: Session = Depends(get_session)):
     return get_branches(session)
 
-@branch_router.get('/branches/{city}')
-async def read_branch_by_city(city: str, session: Session = Depends(get_session)):
-    branch = get_branch_by_city(session, city)
+@branch_router.get('/branches/{postal_code}')
+async def read_branch_by_postal_code(postal_code: str, session: Session = Depends(get_session)):
+    branch = get_branch_by_postal_code(session, postal_code)
 
     if not branch:
         raise HTTPException(status_code = 404, detail = 'Branch not found')
 
     return branch
 
-# @branch_router.get('/branches/{postal_code}')
-# async def read_branch_by_postal_code(postal_code: str, session: Session = Depends(get_session)):
-#     branch = get_branch_by_postal_code(session, postal_code)
+@branch_router.patch('/branches/{postal_code}')
+async def update_city_branch(postal_code: str, branch_update: BranchUpdate, session: Session = Depends(get_session)):
+    update_city = branch_update.model_dump()
+    branch = modify_city_of_branch_by_postal_code(session, postal_code, update_city)
 
-#     if not branch:
-#         raise HTTPException(status_code = 404, detail = 'Branch not found')
+    if not branch:
+        raise HTTPException(status_code = 404, detail = "Branch not found")
 
-#     return branch
+    return branch
