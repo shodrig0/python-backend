@@ -10,9 +10,9 @@ def get_all_product_branch(session: Session):
     product_branch = session.query(ProductBranch).all()
     return product_branch
 
-def group_products_branch(session: Session, product_branch_data: dict):
-    product = get_product_by_sku(session, product_branch_data["sku_product"])
-    branch = get_branch_by_postal_code(session, product_branch_data["pc_brach"])
+def group_products_branch(session: Session, sku_product: str, pc_branch: str, stock: int):
+    product = get_product_by_sku(session, sku_product)
+    branch = get_branch_by_postal_code(session, pc_branch)
 
     if not product:
         return None
@@ -25,7 +25,7 @@ def group_products_branch(session: Session, product_branch_data: dict):
     if existing:
         raise ValueError("Relation already exists")
 
-    product_branch = ProductBranch(product = product_branch_data["sku_product"], branch = product_branch_data["pc_brach"], stock = product_branch_data["stock"])
+    product_branch = ProductBranch(product = product, branch = branch, stock = stock)
 
     session.add(product_branch)
     session.commit()
@@ -50,8 +50,9 @@ def modify_stock_of_product(session: Session, sku_product: str, pc_branch: str, 
     
     if new_stock <= 0:
         raise ValueError("Invalid number")
-
+    
     product_branch.stock = new_stock
+
     session.commit()
     session.refresh(product_branch)
     return product_branch

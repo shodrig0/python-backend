@@ -20,7 +20,7 @@ def get_product_by_sku(session: Session, sku: str):
     product = session.query(Product).filter_by(sku = sku).first()
 
     if not product:
-        raise None
+        return None
 
     return product
 
@@ -28,7 +28,7 @@ def get_products_by_title(session: Session, title: str):
     products = session.query(Product).filter(Product.title.ilike(f"%{title}%")).all()
 
     if not products:
-        raise None
+        return None
     
     return products
 

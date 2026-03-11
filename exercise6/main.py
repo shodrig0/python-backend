@@ -6,6 +6,7 @@ from schemas.branch import branch_router
 from schemas.product_branch import product_branch_router
 from schemas.price import price_router
 from schemas.category import category_router
+from schemas.fakestore import fakestore_router
 from models.product import Product
 from models.category import Category
 from models.branch import Branch
@@ -23,7 +24,7 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(lifespan = lifespan)
 
-routers = [product_router, branch_router, product_branch_router, price_router, category_router]
+routers = [product_router, branch_router, product_branch_router, price_router, category_router, fakestore_router]
 
 for router in routers:
     app.include_router(router)

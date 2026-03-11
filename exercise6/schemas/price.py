@@ -4,7 +4,7 @@ from typing import Optional
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from services.initializer import get_session
-from services.price import get_current_price, update_price, create_price
+from services.price import get_current_price, modify_price, create_price, delete_price
 
 price_router = APIRouter()
 class PriceResponse(BaseModel):
@@ -34,7 +34,7 @@ class PriceUpdate(BaseModel):
 
 @price_router.post('/price')
 async def create_price_by_api(price: PriceCreate, session: Session = Depends(get_session)):
-    return create_price(session, price.sku_product, price.pc_branch, price.amount)
+    return create_price(session, price, price.amount)
 
 @price_router.get('/price/{sku_product}/{pc_branch}')
 async def get_price_product(sku_product: str, pc_branch: str, session: Session = Depends(get_session)):
@@ -42,7 +42,7 @@ async def get_price_product(sku_product: str, pc_branch: str, session: Session =
 
 @price_router.patch('/price/{sku_product}/{pc_branch}')
 async def get_price_product(sku_product: str, pc_branch: str, price_amount: PriceUpdate, session: Session = Depends(get_session)):
-    price = update_price(session, sku_product, pc_branch, price_amount.amount)
+    price = modify_price(session, sku_product, pc_branch, price_amount.amount)
 
     if not price:
         raise HTTPException(status_code = 404, detail = 'Not found')
@@ -50,3 +50,12 @@ async def get_price_product(sku_product: str, pc_branch: str, price_amount: Pric
     price.amount = price_amount.amount
 
     return price
+
+@price_router.delete('/price/{sku_product}/{pc_branch}')
+async def delete_price_by_api(sku_product: str, pc_branch: str, session: Session = Depends(get_session)):
+    price = delete_price(session, sku_product, pc_branch)
+
+    if not price:
+        raise HTTPException(status_code = 404, detail = 'Price not found')
+    
+    return { "detail": "Price deleted successfully" }

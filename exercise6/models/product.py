@@ -9,7 +9,7 @@ class Product(Base):
 
     sku = Column(String(50), nullable = False, unique = True) # <- fakestore id product
     title = Column(String(100), nullable = False)
-    description = Column(String(250), nullable = False)
+    description = Column(String(1000), nullable = False)
     image = Column(String(100), nullable = True)
 
     category_id = Column(ForeignKey('category.category_id'), nullable = False)

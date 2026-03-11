@@ -23,9 +23,8 @@ class CategoryUpdate(BaseModel):
     model_config = ConfigDict(from_attributes = True)
 
 @category_router.post('/categories')
-async def create_categories(category_model: CategoryCreate, session: Session = Depends(get_session)):
-    category_data = category_model.model_dump()
-    category = create_category(session, category_data)
+async def create_categories(category: CategoryCreate, session: Session = Depends(get_session)):
+    category = create_category(session, category.name)
 
     if not category:
         raise HTTPException(status_code = 400, detail = 'Bad request')
@@ -57,4 +56,4 @@ async def delete_category(name: str, session: Session = Depends(get_session)):
     if not category:
         raise HTTPException(status_code = 404, detail = 'category not found')
     
-    return category
+    return { "detail": "Category deleted successfully" }

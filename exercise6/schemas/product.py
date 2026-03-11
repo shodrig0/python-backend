@@ -3,7 +3,7 @@ from sqlalchemy.orm import Session
 from fastapi import APIRouter, Depends, HTTPException
 from typing import Optional
 from services.initializer import get_session
-from services.product import get_all_products, get_product_by_sku, get_products_by_title, create_product, delete_product_by_sku, delete_product_by_sku, modify_data_product_by_sku
+from services.product import get_all_products, get_product_by_sku, get_products_by_title, create_product, delete_product_by_sku, modify_data_product_by_sku
 
 product_router = APIRouter()
 
@@ -72,4 +72,4 @@ async def delete_product(product_sku: str, session: Session = Depends(get_sessio
     if not product:
         raise HTTPException(status_code = 404, detail = 'Product not found')
     
-    return HTTPException(status_code = 200, detail = 'Product deleted successfully')
+    return { "detail": "Product deleted successfully" }

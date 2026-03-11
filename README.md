@@ -95,15 +95,23 @@
 
 ### Ejercicio 6 – Consumir API externa
 
-- [ ] Consumir API pública (ej: FakeStoreAPI)
+- [x] Consumir API pública (ej: FakeStoreAPI)
 
-- [ ] Transformar datos
+- [x] Transformar datos
 
-- [ ] Guardarlos en DB
+- [x] Guardarlos en DB
 
-- [ ] Exponerlos vía FastAPI
+- [x] Exponerlos vía FastAPI
 
 > Objetivo: pipeline completo fetch → persist → exponer
+
+#### GET
+
+<img src="https://live.staticflickr.com/65535/55140034457_61c8988da7_b.jpg" width="1200" height="600" alt="api yaak"/>
+
+#### DB
+
+<img src="https://live.staticflickr.com/65535/55141099013_d8868f7661_z.jpg" width="620" height="600" alt="db pg"/></a>
 
 ## FASE 5 – Background jobs
 

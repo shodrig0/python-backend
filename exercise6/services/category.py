@@ -1,8 +1,8 @@
 from sqlalchemy.orm import Session
 from models.category import Category
 
-def create_category(session: Session, category_data: dict):
-    category = Category(name = category_data["name"])
+def create_category(session: Session, name: str):
+    category = Category(name = name)
     session.add(category)
     session.commit()
     session.refresh(category)
