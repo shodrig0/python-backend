@@ -129,13 +129,15 @@
 
 ### Ejercicio 8 – Simular login y sesión persistente
 
-- [ ] Usar httpx.Client
+- [x] Usar httpx.Client
 
-- [ ] Manejar cookies
+- [x] Manejar cookies
 
-- [ ] Reutilizar sesión
+- [x] Reutilizar sesión
 
-- [ ] Enviar headers personalizados
+- [x] Enviar headers personalizados
+
+> Para no hacer copy/paste del pipeline del ejercicio 6, el ejercicio 8 se integró en el mismo directorio, al igual que el 7.
 
 ## Bonus – Mini proyecto intermedio
 

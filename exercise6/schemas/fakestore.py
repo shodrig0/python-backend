@@ -2,9 +2,9 @@ from pydantic import BaseModel, ConfigDict
 from decimal import Decimal
 from sqlalchemy.orm import Session
 from fastapi import APIRouter, Depends, HTTPException
+from utils.fakestore_scraper import fakestore_scraper
 from services.initializer import get_session
 from services.fakestore import import_products
-from utils.fakestore_scraper import fakestore_scraper
 
 fakestore_router = APIRouter()
 

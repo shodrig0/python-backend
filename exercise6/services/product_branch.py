@@ -1,4 +1,3 @@
-from fastapi import HTTPException
 from sqlalchemy.orm import Session
 from models.product_branch import ProductBranch
 from models.product import Product

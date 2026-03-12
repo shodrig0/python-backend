@@ -4,6 +4,7 @@ from models.product_branch import ProductBranch
 from services.product_branch import get_one_product_branch
 from datetime import datetime, timezone
 from decimal import Decimal
+import random
 
 def create_price(session: Session, product_branch: ProductBranch, amount: Decimal):
     now = datetime.now(timezone.utc)
@@ -36,10 +37,16 @@ def modify_price(session: Session, product_sku: str, pc_branch: str, new_amount:
         return None
 
     current_price = (
-        session.query(Price).filter(Price.product_branch_id == product_branch.product_branch_id, Price.valid_to.is_(None)).one_or_none()
+        session.query(Price).filter(Price.product_branch_id == product_branch.product_branch_id, Price.valid_to.is_(None)).order_by(Price.valid_from.desc()).first()
     )
 
-    if current_price and current_price.amount == new_amount:
+    base_price = current_price.amount if current_price else new_amount
+
+    variation = Decimal(str(random.uniform(-0.03, 0.03)))
+
+    new_price = (base_price * (Decimal("1") + variation)).quantize(Decimal("0.01"))
+
+    if current_price and current_price.amount == new_price:
         return current_price
 
     now = datetime.now(timezone.utc)

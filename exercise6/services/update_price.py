@@ -5,7 +5,6 @@ from utils.fakestore_scraper import fakestore_scraper
 from utils.fakestore_mapper import fakestore_mapper
 from services.price import modify_price
 from decimal import Decimal
-import random
 
 def update_price(session: Session):
     products = fakestore_scraper("https://fakestoreapi.com/products")
@@ -14,9 +13,5 @@ def update_price(session: Session):
         data = fakestore_mapper(product)
         product = get_product_by_sku(session, data["sku"])
 
-        base_price = data["price"]
-        variation = Decimal(str(random.uniform(-0.03, 0.03)))
-
-        new_price = Decimal(base_price) * (Decimal("1") + variation)
-        modify_price(session, product.sku, "NY-123", new_price)
+        modify_price(session, product.sku, "NY-123", Decimal(data["price"]))
         print("Updated prices")
