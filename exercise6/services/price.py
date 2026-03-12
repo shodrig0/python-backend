@@ -1,19 +1,11 @@
 from sqlalchemy.orm import Session
 from models.price import Price
-from models.product import Product
-from models.branch import Branch
 from models.product_branch import ProductBranch
 from services.product_branch import get_one_product_branch
 from datetime import datetime, timezone
+from decimal import Decimal
 
-def create_price(session: Session, product_branch: ProductBranch, amount: float):
-    # product_branch = (
-    #     session.query(ProductBranch).join(ProductBranch.product).join(ProductBranch.branch).filter(Product.sku == product_sku, Branch.postal_code == pc_branch).first()
-    # )
-
-    # if not product_branch:
-    #     return None
-    
+def create_price(session: Session, product_branch: ProductBranch, amount: Decimal):
     now = datetime.now(timezone.utc)
 
     price = Price(amount = amount, valid_from = now, valid_to = None, product_branch = product_branch)
@@ -37,7 +29,7 @@ def get_current_price(session: Session, product_sku: str, pc_branch: str):
 
     return price
 
-def modify_price(session: Session, product_sku: str, pc_branch: str, new_amount: float):
+def modify_price(session: Session, product_sku: str, pc_branch: str, new_amount: Decimal):
     product_branch = get_one_product_branch(session, product_sku, pc_branch)
 
     if not product_branch:
@@ -46,6 +38,9 @@ def modify_price(session: Session, product_sku: str, pc_branch: str, new_amount:
     current_price = (
         session.query(Price).filter(Price.product_branch_id == product_branch.product_branch_id, Price.valid_to.is_(None)).one_or_none()
     )
+
+    if current_price and current_price.amount == new_amount:
+        return current_price
 
     now = datetime.now(timezone.utc)
 

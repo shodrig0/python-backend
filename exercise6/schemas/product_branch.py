@@ -67,4 +67,4 @@ async def delete_product_branch_by_api(sku_product: str, pc_branch: str, session
     if not product_branch:
         raise HTTPException(status_code = 404, detail = 'Information not found')
 
-    return { "detail": "Product-Branch deleted successfully" }
+    return { "detail": "Product-Branch was deleted successfully" }

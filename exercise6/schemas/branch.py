@@ -50,4 +50,4 @@ async def update_city_branch(postal_code: str, branch_update: BranchUpdate, sess
     if not branch:
         raise HTTPException(status_code = 404, detail = "Branch not found")
 
-    return { "detail": "Branch deleted successfully" }
+    return { "detail": "Branch was deleted successfully" }

@@ -1,5 +1,6 @@
 from pydantic import BaseModel, ConfigDict
 from datetime import datetime
+from decimal import Decimal
 from typing import Optional
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
@@ -8,7 +9,7 @@ from services.price import get_current_price, modify_price, create_price, delete
 
 price_router = APIRouter()
 class PriceResponse(BaseModel):
-    amount: float
+    amount: Decimal
     valid_from: datetime
     valid_to: datetime
     product_id: int
@@ -17,14 +18,14 @@ class PriceResponse(BaseModel):
     model_config = ConfigDict(from_attributes = True)
 
 class PriceCreate(BaseModel):
-    amount: float
+    amount: Decimal
     sku_product: str
     pc_branch: str
 
     model_config = ConfigDict(from_attributes = True)
 
 class PriceUpdate(BaseModel):
-    amount: Optional[float] = None
+    amount: Optional[Decimal] = None
     valid_from: Optional[datetime] = None
     valid_to: Optional[datetime] = None
     product_id: Optional[int] = None
@@ -58,4 +59,4 @@ async def delete_price_by_api(sku_product: str, pc_branch: str, session: Session
     if not price:
         raise HTTPException(status_code = 404, detail = 'Price not found')
     
-    return { "detail": "Price deleted successfully" }
+    return { "detail": "Price was deleted successfully" }

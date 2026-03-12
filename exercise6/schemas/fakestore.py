@@ -26,4 +26,4 @@ async def seed_db(session: Session = Depends(get_session)):
     if not products:
         raise HTTPException(status_code = 404, detail = "Product not found")
 
-    return {"detail": "Products imported"}
+    return {"detail": "Products were imported"}

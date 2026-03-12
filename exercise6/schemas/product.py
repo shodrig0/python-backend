@@ -72,4 +72,4 @@ async def delete_product(product_sku: str, session: Session = Depends(get_sessio
     if not product:
         raise HTTPException(status_code = 404, detail = 'Product not found')
     
-    return { "detail": "Product deleted successfully" }
+    return { "detail": "Product was deleted successfully" }

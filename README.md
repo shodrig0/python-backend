@@ -83,13 +83,11 @@
 
 - [x] Integrarlo a FastAPI
 
-```bash
 > Objetivo: ORM real y manejo de sesiones.
 
 > Nuevo: tratar de normalizar la bdd.
 
 > Aclaración: Si bien faltan algunos métodos http como en los services, los más importantes (para aprender fastapi y sqlalchemy) están hechos. En los siguientes ejercicios se irán a ir agregando.
-```
 
 ## FASE 4 – Simulación de scraping
 
@@ -107,23 +105,25 @@
 
 #### GET
 
-<img src="https://live.staticflickr.com/65535/55140034457_61c8988da7_b.jpg" width="1200" height="600" alt="api yaak"/>
+<img src="https://live.staticflickr.com/65535/55140034457_61c8988da7_b.jpg" width="1200" alt="api yaak"/>
 
 #### DB
 
-<img src="https://live.staticflickr.com/65535/55141099013_d8868f7661_z.jpg" width="620" height="600" alt="db pg"/></a>
+<img src="https://live.staticflickr.com/65535/55141099013_d8868f7661_z.jpg" width="620" alt="db pg"/></a>
 
 ## FASE 5 – Background jobs
 
 ### Ejercicio 7 – Tarea en segundo plano
 
-- [ ] Crear endpoint /trigger-update
+- [x] Crear endpoint /trigger-update
 
-- [ ] Ejecutar tarea en background
+- [x] Ejecutar tarea en background
 
-- [ ] Luego automatizar con APScheduler
+- [x] Luego automatizar con APScheduler
 
 > Objetivo: entender workers y tareas programadas.
+
+> Para no hacer copy/paste del pipeline del ejercicio anterior, el ejercicio 7 se integró en el mismo directorio que el 6.
 
 ## FASE 6 – Manejo de sesión HTTP
 

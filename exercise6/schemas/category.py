@@ -56,4 +56,4 @@ async def delete_category(name: str, session: Session = Depends(get_session)):
     if not category:
         raise HTTPException(status_code = 404, detail = 'category not found')
     
-    return { "detail": "Category deleted successfully" }
+    return { "detail": "Category was deleted successfully" }
