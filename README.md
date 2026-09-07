@@ -1,8 +1,31 @@
-# Python
+# Python Backend
 
-## FASE 1 – Fundamentos Python Backend
+Repositorio personal de aprendizaje y experimentación con
+Python orientado al desarrollo backend.
 
-### Ejercicio 1 – Modelado básico
+El proyecto comenzó como una serie de ejercicios progresivos y
+fue evolucionando hacia la construcción de una API con FastAPI,
+PostgreSQL, SQLAlchemy, consumo de APIs externas y tareas
+programadas.
+
+## Qué estoy practicando
+
+- Python y tipado
+- Programación asíncrona
+- FastAPI
+- Diseño de APIs REST
+- PostgreSQL
+- SQLAlchemy
+- Consumo de APIs externas
+- Persistencia y transformación de datos
+- Background jobs
+- Manejo de sesiones HTTP
+
+## Evolución del proyecto
+
+### FASE 1 – Fundamentos Python Backend
+
+#### Ejercicio 1 – Modelado básico
 
 - [x] Crear clases:
   - Producto
@@ -40,9 +63,9 @@
 
 ```
 
-## FASE 2 – FastAPI básico
+### FASE 2 – FastAPI básico
 
-### Ejercicio 3 – CRUD en memoria
+#### Ejercicio 3 – CRUD en memoria
 
 - [x] Crear API con:
   - GET /product
@@ -67,9 +90,9 @@
 
 > Objetivo: simular caso real de región/sucursal.
 
-## FASE 3 – Base de datos real
+### FASE 3 – Base de datos real
 
-### Ejercicio 5 – PostgreSQL + SQLAlchemy
+#### Ejercicio 5 – PostgreSQL + SQLAlchemy
 
 - [x] Crear modelos:
 
@@ -89,9 +112,9 @@
 
 > Aclaración: Si bien faltan algunos métodos http como en los services, los más importantes (para aprender fastapi y sqlalchemy) están hechos. En los siguientes ejercicios se irán a ir agregando.
 
-## FASE 4 – Simulación de scraping
+### FASE 4 – Simulación de scraping
 
-### Ejercicio 6 – Consumir API externa
+#### Ejercicio 6 – Consumir API externa
 
 - [x] Consumir API pública (ej: FakeStoreAPI)
 
@@ -111,9 +134,9 @@
 
 <img src="https://live.staticflickr.com/65535/55141099013_d8868f7661_z.jpg" width="620" alt="db pg"/></a>
 
-## FASE 5 – Background jobs
+### FASE 5 – Background jobs
 
-### Ejercicio 7 – Tarea en segundo plano
+#### Ejercicio 7 – Tarea en segundo plano
 
 - [x] Crear endpoint /trigger-update
 
@@ -125,9 +148,9 @@
 
 > Para no hacer copy/paste del pipeline del ejercicio anterior, el ejercicio 7 se integró en el mismo directorio que el 6.
 
-## FASE 6 – Manejo de sesión HTTP
+### FASE 6 – Manejo de sesión HTTP
 
-### Ejercicio 8 – Simular login y sesión persistente
+#### Ejercicio 8 – Simular login y sesión persistente
 
 - [x] Usar httpx.Client
 
@@ -139,7 +162,7 @@
 
 > Para no hacer copy/paste del pipeline del ejercicio 6, el ejercicio 8 se integró en el mismo directorio, al igual que el 7.
 
-## Bonus – Mini proyecto intermedio
+### Bonus – Mini proyecto intermedio
 
 - Hacer un “mini agregador” que:
   - Scrapee una API pública
